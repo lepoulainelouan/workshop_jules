@@ -3,6 +3,11 @@
 int main()
 {
     sil::Image image{"images/logo.png"};
-    // TODO: modifier l'image
+    //Tout en vert
+    for (glm::vec3& color : image.pixels())
+{
+    color.r = 0.f;
+    color.b=0.f;
+}
     image.save("output/pouet.png");
-}//test
+}
