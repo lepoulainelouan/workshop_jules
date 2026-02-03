@@ -1,5 +1,5 @@
 #include <sil/sil.hpp>
-
+#include "random.hpp"
 int main()
 {
     sil::Image image{"images/logo.png"};
@@ -50,6 +50,7 @@ int main()
     //     }
     // }
 
+
 //Miroir
 //     for (int y = 0; y < image.height(); y++) {
 //         for (int x = 0; x < image.width() / 2; x++) {
@@ -61,3 +62,13 @@ int main()
 //         }
 //     image.save("output/miroir.png");
 // }
+
+
+//Image bruitée
+    for (glm::vec3& color : image.pixels()) {
+        color.r += random_float(-0.3f, 0.3f);
+        color.g += random_float(-0.3f, 0.3f);
+        color.b += random_float(-0.3f, 0.3f);
+    }
+    image.save("output/logo_noize.png");
+}
