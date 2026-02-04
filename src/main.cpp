@@ -202,12 +202,18 @@ int main()
     sil::Image mosaique_m{image.width() * 5, image.height() * 5};
     for (int y = 0; y < mosaique_m.height(); y++) {
         for (int x = 0; x < mosaique_m.width(); x++) {
-            mosaique_m.pixel(x, y) = image.pixel(x%image.width(), y%image.height());
-                std::swap(
-                image.pixel(x, y), 
-                image.pixel(image.width() - 1 - x, y)
-            );
+
+            int case_x = x / image.width();
+            int case_y = y / image.height();
+            int local_x = x % image.width();
+            int local_y = y % image.height();
+            
+            if (case_x % 2 == 1) {
+                local_x = image.width() - 1 - local_x;
+            }
+            mosaique_m.pixel(x, y) = image.pixel(local_x, local_y);
         }
     }
+    
     mosaique_m.save("output/mosaique_m.png");
 }
