@@ -65,10 +65,23 @@ int main()
 
 
 //Image bruitée
-    for (glm::vec3& color : image.pixels()) {
-        color.r += random_float(-0.3f, 0.3f);
-        color.g += random_float(-0.3f, 0.3f);
-        color.b += random_float(-0.3f, 0.3f);
-    }
-    image.save("output/logo_noize.png");
-}
+//     for (glm::vec3& color : image.pixels()) {
+//         color.r += random_float(-0.3f, 0.3f);
+//         color.g += random_float(-0.3f, 0.3f);
+//         color.b += random_float(-0.3f, 0.3f);
+//     }
+//     image.save("output/logo_noize.png");
+// }
+
+
+//rotation 90
+    // int total_pixels = image.width() * image.height();
+    // for (int i = 0; i < total_pixels / 2; i++) {
+    //     std::swap(image.pixels()[i], image.pixels()[total_pixels - 1 - i]);
+    // }
+    // image.save("output/rotation_90.png");
+    // }
+
+
+//RGB SPLIT
+
