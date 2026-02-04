@@ -3,8 +3,8 @@
 #include <cmath>
 
 int main()
-// {
-//     sil::Image image{"images/logo.png"};
+{
+    sil::Image image{"images/logo.png"};
 
 
     //Tout en vert
@@ -189,4 +189,25 @@ int main()
     // }
 
 //Mosaique
-    
+//     sil::Image mosaique{image.width() * 5, image.height() * 5};
+//     for (int y = 0; y < mosaique.height(); y++) {
+//         for (int x = 0; x < mosaique.width(); x++) {
+//             mosaique.pixel(x, y) = image.pixel(x%image.width(), y%image.height());
+//         }
+//     }
+//     mosaique.save("output/mosaique.png");
+// }
+
+//mosaique miroir
+    sil::Image mosaique_m{image.width() * 5, image.height() * 5};
+    for (int y = 0; y < mosaique_m.height(); y++) {
+        for (int x = 0; x < mosaique_m.width(); x++) {
+            mosaique_m.pixel(x, y) = image.pixel(x%image.width(), y%image.height());
+                std::swap(
+                image.pixel(x, y), 
+                image.pixel(image.width() - 1 - x, y)
+            );
+        }
+    }
+    mosaique_m.save("output/mosaique_m.png");
+}
