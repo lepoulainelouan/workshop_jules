@@ -211,9 +211,12 @@ int main()
             if (case_x % 2 == 1) {
                 local_x = image.width() - 1 - local_x;
             }
+
+            if (case_y%2==1){
+                local_y=image.height()-1-local_y;
+            }
             mosaique_m.pixel(x, y) = image.pixel(local_x, local_y);
         }
     }
-    
     mosaique_m.save("output/mosaique_m.png");
 }
