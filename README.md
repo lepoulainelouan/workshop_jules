@@ -49,5 +49,6 @@ Le workshop a été fait avec 2 doigts en moins.
 </details>
 <details>
   <summary>Infos supplémentaires </summary>
-bisous.
+  pardon j'ai vraiment pas fait d'effort pour l'insertion des images je viens de voir le rendu sur git aled.
+bisous. Bon courage pour les corrections !!
 </details>
