@@ -328,15 +328,15 @@ int main()
 
 
 //J'ai voulu faire un truc mais ça a donné un autre effet et en vrai j'aime un peu donc je veux pas supprimer 
-//     sil::Image blur_small = box_blur(image, 0);
-//     sil::Image blur_large = box_blur(image, 50);
-//     sil::Image result{image.width(), image.height()};
+    sil::Image blur_small = box_blur(image, 0);
+    sil::Image blur_large = box_blur(image, 50);
+    sil::Image result{image.width(), image.height()};
 
-//     for (int y = 0; y < image.height(); y++) {
-//         for (int x = 0; x < image.width(); x++) {
-//             glm::vec3 diff = blur_small.pixel(x, y) - blur_large.pixel(x, y);
-//             result.pixel(x, y) = diff + glm::vec3{0.5f};
-//         }
-//     }
-//     result.save("output/difference_gaussienne.png");
-// }
+    for (int y = 0; y < image.height(); y++) {
+        for (int x = 0; x < image.width(); x++) {
+            glm::vec3 diff = blur_small.pixel(x, y) - blur_large.pixel(x, y);
+            result.pixel(x, y) = diff + glm::vec3{0.5f};
+        }
+    }
+    result.save("output/difference_gaussienne.png");
+}

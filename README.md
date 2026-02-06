@@ -33,6 +33,15 @@ Super projet d'Elouan ! Vous trouverez le sujet d'origine ici: https://dsmte.git
     ![image](./output/glitch.png)
 - Fractale de mandelbrot
     ![image](./output/mandelbrot.png)
+- Exo bonus/ diff gaussienne
+    ![image](./output/difference_gaussienne.png)
+
+## Explication de la difference gaussienne / exo bonus 
+
+Le code détecte les contours de l'image en essayant de comparer 2 versions floues.
+Avec "box_blur()", on floute l'image en moyennant les pixels avec leurs voisins.
+Et après on fait 2 versions nette et floue qu'on va soustraire pour faire ressortir les détails.
+Avec le +0,5f à la fin, ramène toutes les valeurs négatives dans un intervalle correct pour rendre un superbe affichage !!
 
 <details>
   <summary>Infos supplémentaires </summary>
