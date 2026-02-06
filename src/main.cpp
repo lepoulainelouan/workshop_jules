@@ -3,11 +3,41 @@
 #include <cmath>
 #include <complex>
 
+sil::Image box_blur(sil::Image const& image, int kernel_size)   
+{
+    sil::Image result{image.width(), image.height()};
+    int half = kernel_size / 2;
+    
+    for (int y = 0; y < image.height(); y++) {
+        for (int x = 0; x < image.width(); x++) {
+            glm::vec3 sum{0.f};
+            int count = 0;
+            for (int dy = -half; dy <= half; dy++) {
+                for (int dx = -half; dx <= half; dx++) {
+                    int nx = x + dx;
+                    int ny = y + dy;
+
+                    if (nx >= 0 && nx < image.width() && ny >= 0 && ny < image.height()) {
+                        sum += image.pixel(nx, ny);
+                        count++;
+                    }
+                }
+            }
+            result.pixel(x, y) = sum / static_cast<float>(count);
+        }
+    }
+    
+    return result;
+}
+
+
 int main()
 {
-    // sil::Image image{"images/logo.png"};
+    sil::Image image{"images/logo.png"};
+    // sil::Image image{"images/photo.jpg"};
+    // sil::Image image{"images/photo_faible_contraste.png"};
 
-//je garde le debut dans 90% des cas.
+
 ////////////////////////////////////////////////////////
 
     //Tout en vert
@@ -80,13 +110,17 @@ int main()
 
 
 //rotation 90
-    // sil::Image new_image{image.width(), image.height()};
-    // int total_pixels = image.width() * image.height();
-    // for (int i = 0; i < total_pixels / 2; i++) {
-    //     std::swap(image.pixels()[i], image.pixels()[total_pixels - 1 - i]);
-    // }
-    // new_image.save("output/rotation_90.png");
-    // }
+//     sil::Image new_image{image.height(), image.width()};
+
+//     for (int x = 0; x < image.width(); x++)
+//     {
+//         for (int y = 0; y < image.height(); y++)
+//         {
+//             new_image.pixel(image.height() - 1 - y, x) = image.pixel(x, y);
+//         }
+//     }
+//     new_image.save("output/rotation_90.png");
+// }
 
 
 //RGB SPLIT
@@ -226,11 +260,11 @@ int main()
 
 
 //glitch
-//     int nb_glitches = 100; 
+    // int nb_glitches = 100; 
     
 //     for (int i = 0; i < nb_glitches; i++) {
-//         int rect_width = random_int(30, 10);
-//         int rect_height = random_int(30, 10);
+//         int rect_width = random_int(4, 20);
+//         int rect_height = random_int(4, 20);
         
 //         int x1 = random_int(0, image.width() - rect_width);
 //         int y1 = random_int(0, image.height() - rect_height);
@@ -238,6 +272,7 @@ int main()
 //         int x2 = random_int(0, image.width() - rect_width);
 //         int y2 = random_int(0, image.height() - rect_height);
         
+
 //         for (int dy = 0; dy < rect_height; dy++) {
 //             for (int dx = 0; dx < rect_width; dx++) {
 //                 std::swap(
@@ -247,7 +282,61 @@ int main()
 //             }
 //         }
 //     }
+    
 //     image.save("output/glitch.png");
 // }
 
 //Fractale de Mandelbrot
+//     sil::Image image{500, 500};
+//     int max_iterations = 100;
+
+//     for (int x = 0; x < image.width(); x++)
+//     {
+//         for (int y = 0; y < image.height(); y++)
+//         {
+//             float real = (x / static_cast<float>(image.width())) * 3.5f - 2.5f;
+//             float imag = (y / static_cast<float>(image.height())) * 2.0f - 1.0f;
+
+//             std::complex<float> c{real, imag};
+            
+//             std::complex<float> z{0.f, 0.f};
+//             int iterations = 0;
+            
+//             while (std::abs(z) <= 2.0f && iterations < max_iterations)
+//             {
+//                 z = z * z + c;
+//                 iterations++;
+//             }
+//             float color;
+//             if (iterations == max_iterations)
+//             {
+
+//                 color = 1.0f;
+//             }
+//             else
+//             {
+
+//                 color = iterations / static_cast<float>(max_iterations);
+//             }
+//             image.pixel(x, y).r=color;
+//             image.pixel(x, y).g=color;
+//             image.pixel(x, y).b=color;
+//         }
+//     }
+//     image.save("output/mandelbrot.png");
+// }
+
+
+//J'ai voulu faire un truc mais ça a donné un autre effet et en vrai j'aime un peu donc je veux pas supprimer 
+//     sil::Image blur_small = box_blur(image, 0);
+//     sil::Image blur_large = box_blur(image, 50);
+//     sil::Image result{image.width(), image.height()};
+
+//     for (int y = 0; y < image.height(); y++) {
+//         for (int x = 0; x < image.width(); x++) {
+//             glm::vec3 diff = blur_small.pixel(x, y) - blur_large.pixel(x, y);
+//             result.pixel(x, y) = diff + glm::vec3{0.5f};
+//         }
+//     }
+//     result.save("output/difference_gaussienne.png");
+// }
