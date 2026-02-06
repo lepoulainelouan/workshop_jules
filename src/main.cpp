@@ -1,11 +1,14 @@
 #include <sil/sil.hpp>
 #include "random.hpp"
 #include <cmath>
+#include <complex>
 
 int main()
 {
-    sil::Image image{"images/logo.png"};
+    // sil::Image image{"images/logo.png"};
 
+//je garde le debut dans 90% des cas.
+////////////////////////////////////////////////////////
 
     //Tout en vert
 //     for (glm::vec3& color : image.pixels())
@@ -199,24 +202,52 @@ int main()
 // }
 
 //mosaique miroir
-    sil::Image mosaique_m{image.width() * 5, image.height() * 5};
-    for (int y = 0; y < mosaique_m.height(); y++) {
-        for (int x = 0; x < mosaique_m.width(); x++) {
+//     sil::Image mosaique_m{image.width() * 5, image.height() * 5};
+//     for (int y = 0; y < mosaique_m.height(); y++) {
+//         for (int x = 0; x < mosaique_m.width(); x++) {
 
-            int case_x = x / image.width();
-            int case_y = y / image.height();
-            int local_x = x % image.width();
-            int local_y = y % image.height();
+//             int case_x = x / image.width();
+//             int case_y = y / image.height();
+//             int local_x = x % image.width();
+//             int local_y = y % image.height();
             
-            if (case_x % 2 == 1) {
-                local_x = image.width() - 1 - local_x;
-            }
+//             if (case_x % 2 == 1) {
+//                 local_x = image.width() - 1 - local_x;
+//             }
 
-            if (case_y%2==1){
-                local_y=image.height()-1-local_y;
-            }
-            mosaique_m.pixel(x, y) = image.pixel(local_x, local_y);
-        }
-    }
-    mosaique_m.save("output/mosaique_m.png");
-}
+//             if (case_y%2==1){
+//                 local_y=image.height()-1-local_y;
+//             }
+//             mosaique_m.pixel(x, y) = image.pixel(local_x, local_y);
+//         }
+//     }
+//     mosaique_m.save("output/mosaique_m.png");
+// }
+
+
+//glitch
+//     int nb_glitches = 100; 
+    
+//     for (int i = 0; i < nb_glitches; i++) {
+//         int rect_width = random_int(30, 10);
+//         int rect_height = random_int(30, 10);
+        
+//         int x1 = random_int(0, image.width() - rect_width);
+//         int y1 = random_int(0, image.height() - rect_height);
+        
+//         int x2 = random_int(0, image.width() - rect_width);
+//         int y2 = random_int(0, image.height() - rect_height);
+        
+//         for (int dy = 0; dy < rect_height; dy++) {
+//             for (int dx = 0; dx < rect_width; dx++) {
+//                 std::swap(
+//                     image.pixel(x1 + dx, y1 + dy),
+//                     image.pixel(x2 + dx, y2 + dy)
+//                 );
+//             }
+//         }
+//     }
+//     image.save("output/glitch.png");
+// }
+
+//Fractale de Mandelbrot
